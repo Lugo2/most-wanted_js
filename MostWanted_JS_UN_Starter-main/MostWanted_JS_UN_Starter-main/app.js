@@ -66,9 +66,10 @@ function mainMenu(person, people) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
-            let personInfo = displayPerson(person[0]);
-            alert(personInfo);
+               displayPerson(person[0]);
             break;
+            
+
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
@@ -151,7 +152,7 @@ function displayPerson(person) {
     personInfo += `currentSpouse: ${person.currentSpouse}\n`;
     
     alert(personInfo);
-    return displayPerson();
+  
 }
 // End of displayPerson()
 
