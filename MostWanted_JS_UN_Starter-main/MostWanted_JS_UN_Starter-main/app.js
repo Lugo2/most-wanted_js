@@ -195,3 +195,35 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function searchByOccupation(people) {
+    let occupation = promptFor("What is the person's occupation", chars);
+
+    let foundPerson = people.filter(function(person) {
+        if (person.occupation == occupation) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    return foundPerson;
+}
+let personOccupation = searchByOccupation(data);
+console.log(personOccupation);
+
+function searchByEyeColor(people) {
+    let eyeColor = promptFor("What is the person's eye color", chars);
+
+    let foundPerson = people.filter(function(person) {
+        if (person.eyeColor == eyeColor) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    });
+        return foundPerson;
+}
+let colorType = searchByEyeColor(data);
+console.log(colorType);
