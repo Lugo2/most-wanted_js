@@ -66,8 +66,8 @@ function mainMenu(person, people) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
-            let personInfo = displayPerson(person[0]);
-            alert(personInfo);
+            displayPerson(person[0]);
+            
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
@@ -101,19 +101,63 @@ function mainMenu(person, people) {
  * @param {Array} people        A collection of person objects.
  * @returns {Array}             An array containing the person-object (or empty array if no match)
  */
-function searchByName(people) {
+function searchByName(people){
     let firstName = promptFor("What is the person's first name?", chars);
     let lastName = promptFor("What is the person's last name?", chars);
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
-    let foundPerson = people.filter(function (person) {
-        if (person.firstName === firstName && person.lastName === lastName) {
+    let foundPerson = people.filter(function(person){
+        if (person.firstName === firstName && person.lastName === lastName){
             return true;
         }
-    });
+        else{
+            return false;
+        }
+    })
     return foundPerson;
 }
+
+let returnSearchByName = searchByName(data);
+console.log(returnSearchByName)
+
+// searh by gender
+function searchByGender(people){
+    let gender = promptFor("What is the person's gender?", chars);
+
+    let foundGender = people.filter(function(person){
+        if (person.gender === gender){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    return foundGender;
+}
+
+let resultSearchByGender = searchByGender(data);
+console.log(resultSearchByGender)
+
+// search by height
+function searchByHeight(people){
+    let height = promptFor("What is the person's heigh?", chars);
+
+    let foundHeight = people.filter(function(person){
+        if (person.height === height){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    return foundHeight;
+}
+
+let resultSearchByHeight = searchByHeight(data);
+console.log(resultSearchByHeight)
+
 // End of searchByName()
+
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -138,7 +182,8 @@ function displayPeople(people) {
  * @param {Object} person       A singular object.
  */
 function displayPerson(person) {
-    let personInfo = `First Name: ${person.firstName}\n`;
+    let personInfo = `id: ${person.id}\n`;
+    personInfo += `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
     personInfo += `gender: ${person.gender}\n`;
     personInfo += `dob: ${person.dob}\n`;
@@ -148,12 +193,17 @@ function displayPerson(person) {
     personInfo += `occupation: ${person.occupation}\n`;
     personInfo += `parents: ${person.parents}\n`;
     personInfo += `currentSpouse: ${person.currentSpouse}\n`;
-    personInfo += `id: ${person.id}\n`;
+    
 
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
 
     alert(personInfo);
+    return displayPerson();
 }
+
+let personObject = displayPerson();
+console.log(personObject)
+
 // End of displayPerson()
 
 /**
