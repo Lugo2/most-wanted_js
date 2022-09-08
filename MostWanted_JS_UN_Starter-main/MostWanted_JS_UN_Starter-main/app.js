@@ -66,7 +66,8 @@ function mainMenu(person, people) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
-               displayPerson(person[0]);
+            displayPerson(person[0]);
+            
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
