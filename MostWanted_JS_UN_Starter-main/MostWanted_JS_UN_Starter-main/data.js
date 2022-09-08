@@ -294,38 +294,3 @@ const data = [
 		"currentSpouse": null
 	}
 ];
-
-// // TODO #1a:
-//     personInfo += `gender: ${person.gender}\n`;
-//     personInfo += `dob: ${person.dob}\n`;
-//     personInfo += `height: ${person.height}\n`;
-//     personInfo += `weight: ${person.weight}\n`;
-//     personInfo += `eyeColor: ${person.eyeColor}\n`;
-//     personInfo += `occupation: ${person.occupation}\n`;
-//     personInfo += `parents: ${person.parents}\n`;
-//     personInfo += `currentSpouse: ${person.currentSpouse}\n`;
-    
-
-// TODO #1:
-displayPerson(person[0]);
-
-function searchByWeight(people) {
-    let personWeight = promptFor("What is the person's weight?", chars);
-
-    // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
-    let foundPerson = people.filter(function (person) {
-        if (person.weight == personWeight) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    });
-    return foundPerson;
-}
-
-let weightOfPerson = searchByWeight(data);
-console.log(`Weight: ${weightOfPerson}`);
-
-
-// TODO #2:

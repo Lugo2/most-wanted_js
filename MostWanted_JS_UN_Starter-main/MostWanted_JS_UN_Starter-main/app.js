@@ -195,8 +195,6 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
-let returnSearchByName = searchByName(data);
-console.log(returnSearchByName)
 
 // searh by gender
 function searchByGender(people){
@@ -216,6 +214,7 @@ function searchByGender(people){
 let resultSearchByGender = searchByGender(data);
 console.log(resultSearchByGender)
 
+
 // search by height
 function searchByHeight(people){
     let height = promptFor("What is the person's heigh?", chars);
@@ -233,40 +232,9 @@ function searchByHeight(people){
 
 let resultSearchByHeight = searchByHeight(data);
 console.log(resultSearchByHeight)
-6
-function searchByOccupation(people) {
-    let occupation = promptFor("What is the person's occupation", chars);
-
-    let foundPerson = people.filter(function(person) {
-        if (person.occupation == occupation) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    })
-    return foundPerson;
-}
-let personOccupation = searchByOccupation(data);
-console.log(personOccupation);
-
-function searchByEyeColor(people) {
-    let eyeColor = promptFor("What is the person's eye color", chars);
-
-    let foundPerson = people.filter(function(person) {
-        if (person.eyeColor == eyeColor) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    });
-        return foundPerson;
-}
-let colorType = searchByEyeColor(data);
-console.log(colorType);
 
 
+// search by weight
 function searchByWeight(people) {
     let personWeight = promptFor("What is the person's weight?", chars);
 
@@ -284,3 +252,39 @@ function searchByWeight(people) {
 
 let weightOfPerson = searchByWeight(data);
 console.log(`Weight: ${weightOfPerson}`);
+
+
+// search by eye color
+function searchByEyeColor(people) {
+    let eyeColor = promptFor("What is the person's eye color", chars);
+
+    let foundPerson = people.filter(function(person) {
+        if (person.eyeColor == eyeColor) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    });
+        return foundPerson;
+}
+let colorType = searchByEyeColor(data);
+console.log(colorType);
+
+
+// search by occupation
+function searchByOccupation(people) {
+    let occupation = promptFor("What is the person's occupation", chars);
+
+    let foundPerson = people.filter(function(person) {
+        if (person.occupation == occupation) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    return foundPerson;
+}
+let personOccupation = searchByOccupation(data);
+console.log(personOccupation);
