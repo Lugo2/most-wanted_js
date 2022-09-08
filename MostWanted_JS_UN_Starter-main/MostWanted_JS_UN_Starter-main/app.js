@@ -68,8 +68,6 @@ function mainMenu(person, people) {
             // HINT: Look for a person-object stringifier utility function to help
                displayPerson(person[0]);
             break;
-            
-
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
@@ -150,7 +148,7 @@ function displayPerson(person) {
     personInfo += `occupation: ${person.occupation}\n`;
     personInfo += `parents: ${person.parents}\n`;
     personInfo += `currentSpouse: ${person.currentSpouse}\n`;
-    
+    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
   
 }
@@ -195,3 +193,39 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+
+// // TODO #1a:
+//     personInfo += `gender: ${person.gender}\n`;
+//     personInfo += `dob: ${person.dob}\n`;
+//     personInfo += `height: ${person.height}\n`;
+//     personInfo += `weight: ${person.weight}\n`;
+//     personInfo += `eyeColor: ${person.eyeColor}\n`;
+//     personInfo += `occupation: ${person.occupation}\n`;
+//     personInfo += `parents: ${person.parents}\n`;
+//     personInfo += `currentSpouse: ${person.currentSpouse}\n`;
+    
+
+// TODO #1:
+displayPerson(person[0]);
+
+function searchByWeight(people) {
+    let personWeight = promptFor("What is the person's weight?", chars);
+
+    // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
+    let foundPerson = people.filter(function (person) {
+        if (person.weight == personWeight) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    });
+    return foundPerson;
+}
+
+let weightOfPerson = searchByWeight(data);
+console.log(`Weight: ${weightOfPerson}`);
+
+
+// TODO #2:
