@@ -66,12 +66,7 @@ function mainMenu(person, people) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
-<<<<<<< HEAD
-            displayPerson(person[0]);
-            
-=======
                displayPerson(person[0]);
->>>>>>> 599bf6664577ba478b62347bddcdb79a6cfc63c9
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
@@ -105,63 +100,19 @@ function mainMenu(person, people) {
  * @param {Array} people        A collection of person objects.
  * @returns {Array}             An array containing the person-object (or empty array if no match)
  */
-function searchByName(people){
+function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);
     let lastName = promptFor("What is the person's last name?", chars);
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
-    let foundPerson = people.filter(function(person){
-        if (person.firstName === firstName && person.lastName === lastName){
+    let foundPerson = people.filter(function (person) {
+        if (person.firstName === firstName && person.lastName === lastName) {
             return true;
         }
-        else{
-            return false;
-        }
-    })
+    });
     return foundPerson;
 }
-
-let returnSearchByName = searchByName(data);
-console.log(returnSearchByName)
-
-// searh by gender
-function searchByGender(people){
-    let gender = promptFor("What is the person's gender?", chars);
-
-    let foundGender = people.filter(function(person){
-        if (person.gender === gender){
-            return true;
-        }
-        else{
-            return false;
-        }
-    })
-    return foundGender;
-}
-
-let resultSearchByGender = searchByGender(data);
-console.log(resultSearchByGender)
-
-// search by height
-function searchByHeight(people){
-    let height = promptFor("What is the person's heigh?", chars);
-
-    let foundHeight = people.filter(function(person){
-        if (person.height === height){
-            return true;
-        }
-        else{
-            return false;
-        }
-    })
-    return foundHeight;
-}
-
-let resultSearchByHeight = searchByHeight(data);
-console.log(resultSearchByHeight)
-
 // End of searchByName()
-
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -197,23 +148,10 @@ function displayPerson(person) {
     personInfo += `occupation: ${person.occupation}\n`;
     personInfo += `parents: ${person.parents}\n`;
     personInfo += `currentSpouse: ${person.currentSpouse}\n`;
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> 599bf6664577ba478b62347bddcdb79a6cfc63c9
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
-<<<<<<< HEAD
-    return displayPerson();
-=======
   
->>>>>>> 599bf6664577ba478b62347bddcdb79a6cfc63c9
 }
-
-let personObject = displayPerson();
-console.log(personObject)
-
 // End of displayPerson()
 
 /**
@@ -255,35 +193,3 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
-
-function searchByOccupation(people) {
-    let occupation = promptFor("What is the person's occupation", chars);
-
-    let foundPerson = people.filter(function(person) {
-        if (person.occupation == occupation) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    })
-    return foundPerson;
-}
-let personOccupation = searchByOccupation(data);
-console.log(personOccupation);
-
-function searchByEyeColor(people) {
-    let eyeColor = promptFor("What is the person's eye color", chars);
-
-    let foundPerson = people.filter(function(person) {
-        if (person.eyeColor == eyeColor) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    });
-        return foundPerson;
-}
-let colorType = searchByEyeColor(data);
-console.log(colorType);
