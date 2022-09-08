@@ -68,8 +68,6 @@ function mainMenu(person, people) {
             // HINT: Look for a person-object stringifier utility function to help
                displayPerson(person[0]);
             break;
-            
-
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
@@ -150,7 +148,7 @@ function displayPerson(person) {
     personInfo += `occupation: ${person.occupation}\n`;
     personInfo += `parents: ${person.parents}\n`;
     personInfo += `currentSpouse: ${person.currentSpouse}\n`;
-    
+    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
   
 }
