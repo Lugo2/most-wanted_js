@@ -295,38 +295,36 @@ function searchByOccupation(people) {
     alert(`Occupation: ${printToConsole}`)
     return foundPerson;
 }
-<<<<<<< HEAD
-let personOccupation = searchByOccupation(data);
-console.log(personOccupation);
 
 
 function searchByParent(person, people) {
 
     let findParent = people.filter(function(el) {
         if(person.parents[0] == el.id || person.parents[1] == el.id) {
-=======
-
-
-// seach sibling relation and name of sibling to person found
-function searchForSiblings(person, people){
-
-    let result = people.filter(function(el){
-        if(person.parents[0] == el.parents[0] || person.parents[1] == el.parents[1]){
->>>>>>> b851e918b625bc0f60e2759d900e6b0512a15ef4
             return true;
         }
         else{
             return false;
         }
     })
-<<<<<<< HEAD
     let alertToConsle = findParent.map(function(el){
         return el.firstName;
     }).join(', ')
     alert(`Parents: ${alertToConsle}`)
     return findParent;
-=======
-    
+}
+
+
+function searchForSiblings(person, people){
+
+    let result = people.filter(function(el){
+        if(person.parents[0] == el.parents[0] || person.parents[1] == el.parents[1]){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
     let thingToPrint = result.map(function(el){
         return el.firstName;
     }).join(', ')
@@ -348,7 +346,7 @@ function findPersonFamily(person, people){
             break;
         case "parents":
 
-
+            searchByParent(person, people)
 
             break;
         case "siblings":
@@ -358,5 +356,4 @@ function findPersonFamily(person, people){
             break;
     }
     alert(promptOptions);
->>>>>>> b851e918b625bc0f60e2759d900e6b0512a15ef4
 }
