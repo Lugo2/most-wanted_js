@@ -288,3 +288,21 @@ function searchByOccupation(people) {
 }
 let personOccupation = searchByOccupation(data);
 console.log(personOccupation);
+
+
+function searchByParent(person, people) {
+
+    let findParent = people.filter(function(el) {
+        if(person.parents[0] == el.id || person.parents[1] == el.id) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let alertToConsle = findParent.map(function(el){
+        return el.firstName;
+    }).join(', ')
+    alert(`Parents: ${alertToConsle}`)
+    return findParent;
+}
