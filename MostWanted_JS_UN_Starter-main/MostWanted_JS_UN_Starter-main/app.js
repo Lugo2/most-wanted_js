@@ -72,8 +72,8 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people);
-            alert(personFamily);
+            findPersonFamily(person[0], people);
+
             break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -208,16 +208,17 @@ function searchByGender(people){
             return false;
         }
     })
+    let printToConsole = foundGender.map(function(person){
+        return person.gender;
+    }).join(', ')
+    alert(`Gender: ${printToConsole}`)
     return foundGender;
 }
-
-let resultSearchByGender = searchByGender(data);
-console.log(resultSearchByGender)
 
 
 // search by height
 function searchByHeight(people){
-    let height = promptFor("What is the person's heigh?", chars);
+    let height = promptFor("What is the person's height?", chars);
 
     let foundHeight = people.filter(function(person){
         if (person.height === height){
@@ -226,12 +227,13 @@ function searchByHeight(people){
         else{
             return false;
         }
-    })
+    });
+    let printToConsole = foundHeight.map(function(person){
+        return person.height;
+    }).join(', ')
+    alert(`Height: ${printToConsole}`)
     return foundHeight;
 }
-
-let resultSearchByHeight = searchByHeight(data);
-console.log(resultSearchByHeight)
 
 
 // search by weight
@@ -247,11 +249,12 @@ function searchByWeight(people) {
             return false;
         }
     });
+    let printToConsole = foundPerson.map(function(person){
+        return person.weight;
+    }).join(', ')
+    alert(`Weight: ${printToConsole}`)
     return foundPerson;
 }
-
-let weightOfPerson = searchByWeight(data);
-console.log(`Weight: ${weightOfPerson}`);
 
 
 // search by eye color
@@ -266,10 +269,12 @@ function searchByEyeColor(people) {
             return false;
         }
     });
-        return foundPerson;
+    let printToConsole = foundPerson.map(function(person){
+        return person.eyeColor;
+    }).join(', ')
+    alert(`Eye color: ${printToConsole}`)
+    return foundPerson;
 }
-let colorType = searchByEyeColor(data);
-console.log(colorType);
 
 
 // search by occupation
@@ -284,7 +289,55 @@ function searchByOccupation(people) {
             return false;
         }
     })
+    let printToConsole = foundPerson.map(function(person){
+        return person.occupation;
+    }).join(', ')
+    alert(`Occupation: ${printToConsole}`)
     return foundPerson;
 }
-let personOccupation = searchByOccupation(data);
-console.log(personOccupation);
+
+
+// seach sibling relation and name of sibling to person found
+function searchForSiblings(person, people){
+
+    let result = people.filter(function(el){
+        if(person.parents[0] == el.parents[0] || person.parents[1] == el.parents[1]){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    
+    let thingToPrint = result.map(function(el){
+        return el.firstName;
+    }).join(', ')
+    alert(`Siblings: ${thingToPrint}`)
+    return result;
+}
+
+
+// find family function
+function findPersonFamily(person, people){
+    let promptOptions = prompt(
+        `What type of immediete family members would you like to see?\nWould you like to see ${person.firstName}'s "spouse", "parents", or "siblings"?`
+    );
+    switch(promptOptions){
+        case "spouse":
+            
+
+
+            break;
+        case "parents":
+
+
+
+            break;
+        case "siblings":
+
+            searchForSiblings(person, people);
+
+            break;
+    }
+    alert(promptOptions);
+}
