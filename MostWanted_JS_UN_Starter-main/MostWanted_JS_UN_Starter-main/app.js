@@ -78,8 +78,8 @@ function mainMenu(person, people) {
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
-            let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
+            findPersonDescendants(person[0], people);
+            
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -297,6 +297,7 @@ function searchByOccupation(people) {
 }
 
 
+// find parents function
 function searchByParent(person, people) {
 
     let findParent = people.filter(function(el) {
@@ -315,6 +316,7 @@ function searchByParent(person, people) {
 }
 
 
+// find siblings function
 function searchForSiblings(person, people){
 
     let result = people.filter(function(el){
@@ -356,4 +358,22 @@ function findPersonFamily(person, people){
             break;
     }
     alert(promptOptions);
+}
+
+
+// find descendents function
+function findPersonDescendants(person, people){
+    let findDescendent = people.filter(function(element) {
+        if(person.id == element.parents[0] || person.id == element.parents[1]) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let alertToConsle = findDescendent.map(function(element){
+        return element.firstName;
+    }).join(', ')
+    alert(`Descendents: ${alertToConsle}`)
+    return findDescendent;
 }
