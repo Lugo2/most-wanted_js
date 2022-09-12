@@ -240,7 +240,7 @@ function searchByHeight(people){
 function searchByWeight(people) {
     let personWeight = promptFor("What is the person's weight?", chars);
 
-    // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
+    //The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
         if (person.weight == personWeight) {
             return true;
@@ -312,7 +312,6 @@ function searchByTraits(people){
                 case 'multiple':
                 break;
 }
-}   
 
 // find parents function
 function searchByParent(person, people) {
@@ -413,7 +412,7 @@ function findPersonDescendants(person, people){
 }
 
 // find member by trait
-function multiplePersonTraits(person, people){
+function multiplePersonTraits(person, people) {
         
     let multipleTraits = people.filter(function(el) {
         if(person.personInfo == el.parents[0] || person.personInfo == el.parents[1]){
