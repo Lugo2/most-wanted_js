@@ -72,14 +72,14 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people);
-            alert(personFamily);
+            findPersonFamily(person[0], people);
+
             break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
-            let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
+            findPersonDescendants(person[0], people);
+            
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -208,11 +208,12 @@ function searchByGender(people){
             return false;
         }
     })
+    let printToConsole = foundGender.map(function(person){
+        return person.gender;
+    }).join(', ')
+    alert(`Gender: ${printToConsole}`)
     return foundGender;
 }
-
-let resultSearchByGender = searchByGender(data);
-console.log(resultSearchByGender)
 
 
 // search by height
@@ -226,12 +227,13 @@ function searchByHeight(people){
         else{
             return false;
         }
-    })
+    });
+    let printToConsole = foundHeight.map(function(person){
+        return person.height;
+    }).join(', ')
+    alert(`Height: ${printToConsole}`)
     return foundHeight;
 }
-
-let resultSearchByHeight = searchByHeight(data);
-console.log(resultSearchByHeight)
 
 
 // search by weight
@@ -247,11 +249,12 @@ function searchByWeight(people) {
             return false;
         }
     });
+    let printToConsole = foundPerson.map(function(person){
+        return person.weight;
+    }).join(', ')
+    alert(`Weight: ${printToConsole}`)
     return foundPerson;
 }
-
-let weightOfPerson = searchByWeight(data);
-console.log(`Weight: ${weightOfPerson}`);
 
 
 // search by eye color
@@ -266,10 +269,12 @@ function searchByEyeColor(people) {
             return false;
         }
     });
-        return foundPerson;
+    let printToConsole = foundPerson.map(function(person){
+        return person.eyeColor;
+    }).join(', ')
+    alert(`Eye color: ${printToConsole}`)
+    return foundPerson;
 }
-let colorType = searchByEyeColor(data);
-console.log(colorType);
 
 
 // search by occupation
@@ -284,27 +289,129 @@ function searchByOccupation(people) {
             return false;
         }
     })
+    let printToConsole = foundPerson.map(function(person){
+        return person.occupation;
+    }).join(', ')
+    alert(`Occupation: ${printToConsole}`)
     return foundPerson;
 }
-let personOccupation = searchByOccupation(data);
-console.log(personOccupation);
 
-// search by spouse
-function searchBySpouse(person, people){
-    let findSpouse = people.filter(function(el){
-        if (person.currentSpouse == el.id ){
+
+// find person based off multiple traits
+function searchByTraits(people){
+    let promptSearchOptions = prompt(
+        "You can find who you're looking for through typing in\na single trait or multiple traits(limit of 5 traits per person).\nChoose 'singular' or 'multiple' as needed."
+    );
+    switch(promptSearchOptions){
+        case 'singular':
+            let promptSingleTrait = prompt(
+                "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose a SINGULAR trait."
+            ) 
+
+            break;
+        case 'multiple':
+            let promptMultipleTrait = prompt(
+                "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose MULTIPLE traits(min-2 and max-5)."
+            )   
+
+            break;
+    }
+}   
+
+// find parents function
+function searchByParent(person, people) {
+
+    let findParent = people.filter(function(el) {
+        if(person.parents[0] == el.id || person.parents[1] == el.id) {
             return true;
-                    }
+        }
         else{
             return false;
         }
     })
-    let alertToConsole = findSpouse.map(function(el){
-        return el.firstName;
-    })
-    .join(", ")
-    alert(`spouse; ${alertToConsole}`)
-
-    return findSpouse;
+    let alertToConsle = findParent.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
+    }).join(', ')
+    alert(`Parents: ${alertToConsle}`)
+    return findParent;
 }
 
+
+// find siblings function
+function searchForSiblings(person, people){
+
+    let result = people.filter(function(el){
+        if(person.parents[0] == el.parents[0] || person.parents[1] == el.parents[1]){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let name = result.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
+    }).join(', ')
+    alert(`Siblings: ${name}`)
+    return result;
+}
+
+
+// find spouse function
+function searchForSpouse(person, people){
+    let spouse = people.filter(function(el){
+        if(person.id == el.currentSpouse){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let printSpouse = spouse.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
+    }).join('')
+    alert(`${person.firstName}'s current spouse: ${printSpouse}`)
+    return spouse;
+}
+
+// find family function
+function findPersonFamily(person, people){
+    let promptOptions = prompt(
+        `What type of immediete family members would you like to see?\nWould you like to see ${person.firstName}'s "spouse", "parents", or "siblings"?`
+    );
+    switch(promptOptions){
+        case "spouse":
+            
+            searchForSpouse(person, people);
+
+            break;
+        case "parents":
+
+            searchByParent(person, people);
+
+            break;
+        case "siblings":
+
+            searchForSiblings(person, people);
+
+            break;
+    }
+    alert(promptOptions);
+}
+
+
+// find descendents function
+function findPersonDescendants(person, people){
+    let findDescendent = people.filter(function(element) {
+        if(person.id == element.parents[0] || person.id == element.parents[1]) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let alertToConsle = findDescendent.map(function(element){
+        return (`${element.firstName} ${element.lastName}`);
+    }).join(', ')
+    alert(`Descendents: ${alertToConsle}`);
+    return findDescendent;
+}
