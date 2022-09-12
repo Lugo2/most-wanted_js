@@ -217,7 +217,7 @@ console.log(resultSearchByGender)
 
 // search by height
 function searchByHeight(people){
-    let height = promptFor("What is the person's heigh?", chars);
+    let height = promptFor("What is the person's height?", chars);
 
     let foundHeight = people.filter(function(person){
         if (person.height === height){
@@ -238,7 +238,7 @@ console.log(resultSearchByHeight)
 function searchByWeight(people) {
     let personWeight = promptFor("What is the person's weight?", chars);
 
-    // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
+    //The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
         if (person.weight == personWeight) {
             return true;
@@ -288,3 +288,23 @@ function searchByOccupation(people) {
 }
 let personOccupation = searchByOccupation(data);
 console.log(personOccupation);
+
+// search by spouse
+function searchBySpouse(person, people){
+    let findSpouse = people.filter(function(el){
+        if (person.currentSpouse == el.id ){
+            return true;
+                    }
+        else{
+            return false;
+        }
+    })
+    let alertToConsole = findSpouse.map(function(el){
+        return el.firstName;
+    })
+    .join(", ")
+    alert(`spouse; ${alertToConsole}`)
+
+    return findSpouse;
+}
+
