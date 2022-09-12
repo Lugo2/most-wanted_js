@@ -297,6 +297,27 @@ function searchByOccupation(people) {
 }
 
 
+// find person based off multiple traits
+function searchByTraits(people){
+    let promptSearchOptions = prompt(
+        "You can find who you're looking for through typing in\na single trait or multiple traits(limit of 5 traits per person).\nChoose 'singular' or 'multiple' as needed."
+    );
+    switch(promptSearchOptions){
+        case 'singular':
+            let promptSingleTrait = prompt(
+                "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose a SINGULAR trait."
+            ) 
+
+            break;
+        case 'multiple':
+            let promptMultipleTrait = prompt(
+                "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose MULTIPLE traits(min-2 and max-5)."
+            )   
+
+            break;
+    }
+}   
+
 // find parents function
 function searchByParent(person, people) {
 
@@ -309,7 +330,7 @@ function searchByParent(person, people) {
         }
     })
     let alertToConsle = findParent.map(function(el){
-        return el.firstName;
+        return (`${el.firstName} ${el.lastName}`);
     }).join(', ')
     alert(`Parents: ${alertToConsle}`)
     return findParent;
@@ -327,13 +348,30 @@ function searchForSiblings(person, people){
             return false;
         }
     })
-    let thingToPrint = result.map(function(el){
-        return el.firstName;
+    let name = result.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
     }).join(', ')
-    alert(`Siblings: ${thingToPrint}`)
+    alert(`Siblings: ${name}`)
     return result;
 }
 
+
+// find spouse function
+function searchForSpouse(person, people){
+    let spouse = people.filter(function(el){
+        if(person.id == el.currentSpouse){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let printSpouse = spouse.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
+    }).join('')
+    alert(`${person.firstName}'s current spouse: ${printSpouse}`)
+    return spouse;
+}
 
 // find family function
 function findPersonFamily(person, people){
@@ -343,12 +381,12 @@ function findPersonFamily(person, people){
     switch(promptOptions){
         case "spouse":
             
-
+            searchForSpouse(person, people);
 
             break;
         case "parents":
 
-            searchByParent(person, people)
+            searchByParent(person, people);
 
             break;
         case "siblings":
@@ -372,8 +410,8 @@ function findPersonDescendants(person, people){
         }
     })
     let alertToConsle = findDescendent.map(function(element){
-        return element.firstName;
+        return (`${element.firstName} ${element.lastName}`);
     }).join(', ')
-    alert(`Descendents: ${alertToConsle}`)
+    alert(`Descendents: ${alertToConsle}`);
     return findDescendent;
 }
