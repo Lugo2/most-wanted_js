@@ -78,8 +78,8 @@ function mainMenu(person, people) {
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
-            let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
+            findPersonDescendants(person[0], people);
+            
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -295,45 +295,79 @@ function searchByOccupation(people) {
     alert(`Occupation: ${printToConsole}`)
     return foundPerson;
 }
-<<<<<<< HEAD
-let personOccupation = searchByOccupation(data);
-console.log(personOccupation);
 
 
+// find person based off multiple traits
+function searchByTraits(people){
+    let promptSearchOptions = prompt(
+        "You can find who you're looking for through typing in\na single trait or multiple traits(limit of 5 traits per person).\nChoose 'singular' or 'multiple' as needed."
+    );
+    switch(promptSearchOptions){
+        case 'singular':
+            let promptSingleTrait = prompt(
+                "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose a SINGULAR trait."
+                )
+                
+                break;
+                case 'multiple':
+                break;
+}
+}   
+
+// find parents function
 function searchByParent(person, people) {
 
     let findParent = people.filter(function(el) {
         if(person.parents[0] == el.id || person.parents[1] == el.id) {
-=======
-
-
-// seach sibling relation and name of sibling to person found
-function searchForSiblings(person, people){
-
-    let result = people.filter(function(el){
-        if(person.parents[0] == el.parents[0] || person.parents[1] == el.parents[1]){
->>>>>>> b851e918b625bc0f60e2759d900e6b0512a15ef4
             return true;
         }
         else{
             return false;
         }
     })
-<<<<<<< HEAD
     let alertToConsle = findParent.map(function(el){
-        return el.firstName;
+        return (`${el.firstName} ${el.lastName}`);
     }).join(', ')
     alert(`Parents: ${alertToConsle}`)
     return findParent;
-=======
-    
-    let thingToPrint = result.map(function(el){
-        return el.firstName;
+}
+
+
+// find siblings function
+function searchForSiblings(person, people){
+
+    let result = people.filter(function(el){
+        if(person.parents[0] == el.parents[0] || person.parents[1] == el.parents[1]){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let name = result.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
     }).join(', ')
-    alert(`Siblings: ${thingToPrint}`)
+    alert(`Siblings: ${name}`)
     return result;
 }
 
+
+// find spouse function
+function searchForSpouse(person, people){
+    let spouse = people.filter(function(el){
+        if(person.id == el.currentSpouse){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let printSpouse = spouse.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
+    }).join('')
+    alert(`${person.firstName}'s current spouse: ${printSpouse}`)
+    return spouse;
+}
 
 // find family function
 function findPersonFamily(person, people){
@@ -343,12 +377,12 @@ function findPersonFamily(person, people){
     switch(promptOptions){
         case "spouse":
             
-
+            searchForSpouse(person, people);
 
             break;
         case "parents":
 
-
+            searchByParent(person, people);
 
             break;
         case "siblings":
@@ -358,5 +392,40 @@ function findPersonFamily(person, people){
             break;
     }
     alert(promptOptions);
->>>>>>> b851e918b625bc0f60e2759d900e6b0512a15ef4
+}
+
+
+// find descendents function
+function findPersonDescendants(person, people){
+    let findDescendent = people.filter(function(element) {
+        if(person.id == element.parents[0] || person.id == element.parents[1]) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let alertToConsle = findDescendent.map(function(element){
+        return (`${element.firstName} ${element.lastName}`);
+    }).join(', ')
+    alert(`Descendents: ${alertToConsle}`);
+    return findDescendent;
+}
+
+// find member by trait
+function multiplePersonTraits(person, people){
+        
+    let multipleTraits = people.filter(function(el) {
+        if(person.personInfo == el.parents[0] || person.personInfo == el.parents[1]){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }) 
+    let alertToConsle = multipleTraits.map(function(el){
+        return (`${el.firstName} ${el.lastName}`);
+    }).join(', ')
+    alert(`Multiple: ${alertToConsle}`);
+    return alertToConsle;
 }
