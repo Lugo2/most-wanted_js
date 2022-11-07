@@ -310,7 +310,7 @@ function searchByTraits(people){
         switch(promptSearchOptions){
             case 'singular':
                 let promptSingleTrait = prompt(
-                    "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose a SINGULAR trait."
+                    "Your trait options are as follows:\n last name, date o/birth, height, occupation, or parents.\n\nChoose a SINGULAR trait."
                     );
                     if(promptSingleTrait == "last name"){
                         searchReturn = searchByName(searchReturn)
@@ -333,7 +333,7 @@ function searchByTraits(people){
                     break;
                     case 'multiple':
                         let promptMultipleTraits = prompt(
-                            "Your trait options are as follows:\nfirst and last name, gender and date o/birth, height and weight, eye color and occupation, parents and spouse.\n\nChoose MULTIPLE traits."
+                            "Your trait options are as follows:\nfirst and last name, gender and date o/birth, height and weight, eye color and occupation, or parents and spouse.\n\nChoose MULTIPLE traits."
                             );
                             if(promptMultipleTraits == "first and last name"){
                                 searchReturn = searchByName(searchReturn.firstName && searchReturn.lastName)
