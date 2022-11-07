@@ -53,7 +53,7 @@ function app(people) {
  */
 function mainMenu(person, people) {
     // A check to verify a person was found via searchByName() or searchByTrait()
-    if (!person[0]) {
+    if (!person) {
         alert("Could not find that individual.");
         // Restarts app() from the very beginning
         return app(people);
@@ -109,6 +109,9 @@ function searchByName(people) {
     let foundPerson = people.filter(function (person) {
         if (person.firstName === firstName && person.lastName === lastName) {
             return true;
+        }
+        else{
+            return false;
         }
     });
     return foundPerson;
@@ -209,7 +212,7 @@ function searchByGender(people){
         }
     })
     let printToConsole = foundGender.map(function(person){
-        return person.gender;
+        return person.firstName;
     }).join(', ')
     alert(`Gender: ${printToConsole}`)
     return foundGender;
@@ -229,7 +232,7 @@ function searchByHeight(people){
         }
     });
     let printToConsole = foundHeight.map(function(person){
-        return person.height;
+        return person.firstName;
     }).join(', ')
     alert(`Height: ${printToConsole}`)
     return foundHeight;
@@ -250,7 +253,7 @@ function searchByWeight(people) {
         }
     });
     let printToConsole = foundPerson.map(function(person){
-        return person.weight;
+        return person.firstName;
     }).join(', ')
     alert(`Weight: ${printToConsole}`)
     return foundPerson;
@@ -261,7 +264,7 @@ function searchByWeight(people) {
 function searchByEyeColor(people) {
     let eyeColor = promptFor("What is the person's eye color", chars);
 
-    let foundPerson = people.filter(function(person) {
+    let foundPeople = people.filter(function(person) {
         if (person.eyeColor == eyeColor) {
             return true;
         }
@@ -269,11 +272,11 @@ function searchByEyeColor(people) {
             return false;
         }
     });
-    let printToConsole = foundPerson.map(function(person){
-        return person.eyeColor;
+    let printToConsole = foundPeople.map(function(person){
+        return person.firstName;
     }).join(', ')
     alert(`Eye color: ${printToConsole}`)
-    return foundPerson;
+    return foundPeople;
 }
 
 
@@ -290,7 +293,7 @@ function searchByOccupation(people) {
         }
     })
     let printToConsole = foundPerson.map(function(person){
-        return person.occupation;
+        return person.firstName;
     }).join(', ')
     alert(`Occupation: ${printToConsole}`)
     return foundPerson;
@@ -299,18 +302,59 @@ function searchByOccupation(people) {
 
 // find person based off multiple traits
 function searchByTraits(people){
+    let searchReturn = people
     let promptSearchOptions = prompt(
         "You can find who you're looking for through typing in\na single trait or multiple traits(limit of 5 traits per person).\nChoose 'singular' or 'multiple' as needed."
     );
-    switch(promptSearchOptions){
-        case 'singular':
-            let promptSingleTrait = prompt(
-                "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose a SINGULAR trait."
-                )
-                
-                break;
-                case 'multiple':
-                break;
+    while(true){
+        switch(promptSearchOptions){
+            case 'singular':
+                let promptSingleTrait = prompt(
+                    "Your trait options are as follows:\nfirst name, last name, gender, date o/birth, height\nweight, eye color, occupation, parents, and spouse.\n\nChoose a SINGULAR trait."
+                    );
+                    if(promptSingleTrait == "last name"){
+                        searchReturn = searchByName(searchReturn)
+                    }
+                    if(promptSingleTrait == "date o/birth"){
+                        searchReturn = personInfo(searchReturn)
+                    }
+                    if(promptSingleTrait == "height"){
+                        searchReturn = searchByHeight(searchReturn)
+                    }
+                    if(promptSingleTrait == "occupation"){
+                        searchReturn = searchByOccupation(searchReturn)
+                    }
+                    if(promptSingleTrait == "parents"){
+                        searchReturn = searchByParent(searchReturn)
+                    }
+                    else{
+                        return false;
+                    }
+                    break;
+                    case 'multiple':
+                        let promptMultipleTraits = prompt(
+                            "Your trait options are as follows:\nfirst and last name, gender and date o/birth, height and weight, eye color and occupation, parents and spouse.\n\nChoose MULTIPLE traits."
+                            );
+                            if(promptMultipleTraits == "first and last name"){
+                                searchReturn = searchByName(searchReturn.firstName && searchReturn.lastName)
+                            }
+                            if(promptMultipleTraits == "gender and date o/birth"){
+                                searchReturn = searchByGender(searchReturn) && personInfo(searchReturn)
+                            }
+                            if(promptMultipleTraits == "height and weight"){
+                                searchReturn = searchByHeight(searchReturn) && searchByWeight(searchReturn)
+                            }
+                            if(promptMultipleTraits == "eye color and occupation"){
+                                searchReturn = searchByEyeColor(searchReturn) && searchByOccupation(searchReturn)
+                            }
+                            if(promptMultipleTraits == "parents and spouse"){
+                                searchReturn = searchByParent(searchReturn) && searchForSpouse(searchReturn)
+                            }
+                            else{
+                                return false;
+                            }
+                    break;
+    }
 }
 
 // find parents function
@@ -427,4 +471,5 @@ function multiplePersonTraits(person, people) {
     }).join(', ')
     alert(`Multiple: ${alertToConsle}`);
     return alertToConsle;
+}
 }
