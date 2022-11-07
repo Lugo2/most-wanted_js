@@ -419,20 +419,23 @@ function findPersonFamily(person, people){
     );
     switch(promptOptions){
         case "spouse":
-            
-            searchForSpouse(person, people);
-
-            break;
-        case "parents":
-
-            searchByParent(person, people);
-
-            break;
-        case "siblings":
-
-            searchForSiblings(person, people);
-
-            break;
+    if(promptOptions == "spouse"){
+        searchReturn = searchForSpouse(person, people);
+    }
+        break;
+    case "parents":
+    if(promptOptions == "parents"){
+        searchReturn = searchByParent(person, people);
+    }
+    break;
+    case "siblings":
+    if(promptOptions == "sibilings"){
+        searchReturn = searchForSiblings(person, people);
+    }
+    else{
+        return false
+    }
+        break;
     }
     alert(promptOptions);
 }
