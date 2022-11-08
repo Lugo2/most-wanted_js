@@ -224,7 +224,7 @@ function searchByHeight(people){
     let height = promptFor("What is the person's height?", chars);
 
     let foundHeight = people.filter(function(person){
-        if (person.height === height){
+        if (person.height == height){
             return true;
         }
         else{
@@ -303,59 +303,44 @@ function searchByOccupation(people) {
 // find person based off multiple traits
 function searchByTraits(people){
     let searchReturn = people
-    let promptSearchOptions = prompt(
-        "You can find who you're looking for through typing in\na single trait or multiple traits(limit of 5 traits per person).\nChoose 'singular' or 'multiple' as needed."
-    );
-    while(true){
-        switch(promptSearchOptions){
-            case 'singular':
-                let promptSingleTrait = prompt(
-                    "Your trait options are as follows:\n last name, date o/birth, height, occupation, or parents.\n\nChoose a SINGULAR trait."
-                    );
-                    if(promptSingleTrait == "last name"){
-                        searchReturn = searchByName(searchReturn)
-                    }
-                    if(promptSingleTrait == "date o/birth"){
-                        searchReturn = personInfo(searchReturn)
-                    }
-                    if(promptSingleTrait == "height"){
-                        searchReturn = searchByHeight(searchReturn)
-                    }
-                    if(promptSingleTrait == "occupation"){
-                        searchReturn = searchByOccupation(searchReturn)
-                    }
-                    if(promptSingleTrait == "parents"){
-                        searchReturn = searchByParent(searchReturn)
-                    }
-                    else{
-                        return false;
-                    }
-                    break;
-                    case 'multiple':
-                        let promptMultipleTraits = prompt(
-                            "Your trait options are as follows:\nfirst and last name, gender and date o/birth, height and weight, eye color and occupation, or parents and spouse.\n\nChoose MULTIPLE traits."
-                            );
-                            if(promptMultipleTraits == "first and last name"){
-                                searchReturn = searchByName(searchReturn.firstName && searchReturn.lastName)
-                            }
-                            if(promptMultipleTraits == "gender and date o/birth"){
-                                searchReturn = searchByGender(searchReturn) && personInfo(searchReturn)
-                            }
-                            if(promptMultipleTraits == "height and weight"){
-                                searchReturn = searchByHeight(searchReturn) && searchByWeight(searchReturn)
-                            }
-                            if(promptMultipleTraits == "eye color and occupation"){
-                                searchReturn = searchByEyeColor(searchReturn) && searchByOccupation(searchReturn)
-                            }
-                            if(promptMultipleTraits == "parents and spouse"){
-                                searchReturn = searchByParent(searchReturn) && searchForSpouse(searchReturn)
-                            }
-                            else{
-                                return false;
-                            }
-                    break;
+    let user_input =""
+    while (user_input != "done"){
+        user_input = promptFor("height, gender, occupation, eye color, or weight.  Type done for done", chars)
+        if (user_input == "height"){
+            searchReturn = searchByHeight(searchReturn)
+        }
+        else if(user_input === "gender"){
+            searchReturn = searchByGender(searchReturn)
+        }
+        else if(user_input == "occupation"){
+            searchReturn = searchByOccupation(searchReturn)
+        }
+        else if(user_input == "eye color"){
+            searchReturn = searchByEyeColor(searchReturn)
+        }
+        else{ 
+            searchReturn = searchByWeight(searchReturn)
+
+        }
+        console.log(searchReturn)
+
     }
+    let searchType = searchReturn.filter(function(el){
+        return (`${el.firstName} ${el.lastName}`);
+    }).join(', ')
+    alert(`User input ${searchType}`)
+    return searchReturn
 }
+
+
+
+  
+   
+   
+
+    
+
+                
 
 // find parents function
 function searchByParent(person, people) {
@@ -474,5 +459,4 @@ function multiplePersonTraits(person, people) {
     }).join(', ')
     alert(`Multiple: ${alertToConsle}`);
     return alertToConsle;
-}
 }
