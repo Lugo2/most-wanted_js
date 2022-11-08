@@ -113,6 +113,7 @@ function searchByName(people) {
         else{
             return false;
         }
+        
     });
     return foundPerson;
 }
@@ -300,7 +301,8 @@ function searchByOccupation(people) {
 }
 
 
-// find person based off multiple traits
+// find person based off single or multiple traits
+
 function searchByTraits(people){
     let searchReturn = people
     let user_input =""
@@ -333,6 +335,7 @@ function searchByTraits(people){
 }
 
 // find parents function
+
 function searchByParent(person, people) {
 
     let findParent = people.filter(function(el) {
@@ -352,6 +355,7 @@ function searchByParent(person, people) {
 
 
 // find siblings function
+
 function searchForSiblings(person, people){
 
     let result = people.filter(function(el){
@@ -371,6 +375,7 @@ function searchForSiblings(person, people){
 
 
 // find spouse function
+
 function searchForSpouse(person, people){
     let spouse = people.filter(function(el){
         if(person.id == el.currentSpouse){
@@ -388,6 +393,7 @@ function searchForSpouse(person, people){
 }
 
 // find family function
+
 function findPersonFamily(person, people){
     let promptOptions = prompt(
         `What type of immediete family members would you like to see?\nWould you like to see ${person.firstName}'s "spouse", "parents", or "siblings"?`
@@ -417,6 +423,7 @@ function findPersonFamily(person, people){
 
 
 // find descendents function
+
 function findPersonDescendants(person, people){
     let findDescendent = people.filter(function(element) {
         if(person.id == element.parents[0] || person.id == element.parents[1]) {
@@ -431,22 +438,4 @@ function findPersonDescendants(person, people){
     }).join(', ')
     alert(`Descendents: ${alertToConsle}`);
     return findDescendent;
-}
-
-// find member by trait
-function multiplePersonTraits(person, people) {
-        
-    let multipleTraits = people.filter(function(el) {
-        if(person.personInfo == el.parents[0] || person.personInfo == el.parents[1]){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }) 
-    let alertToConsle = multipleTraits.map(function(el){
-        return (`${el.firstName} ${el.lastName}`);
-    }).join(', ')
-    alert(`Multiple: ${alertToConsle}`);
-    return alertToConsle;
 }
