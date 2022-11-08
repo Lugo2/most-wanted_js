@@ -332,16 +332,6 @@ function searchByTraits(people){
     return searchReturn
 }
 
-
-
-  
-   
-   
-
-    
-
-                
-
 // find parents function
 function searchByParent(person, people) {
 
